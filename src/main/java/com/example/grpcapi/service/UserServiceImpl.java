@@ -39,7 +39,8 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
 
         // Generate ID and hash password
         Long userId = idGenerator.generateId();
-        String salt = UUID.randomUUID().toString();
+        long saltI = idGenerator.generateId();
+        String salt = Long.toString(saltI);
         String hashedPassword = Hash.hashPassword(request.getPassword(), salt);
 
         // Save to User table
